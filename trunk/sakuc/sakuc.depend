@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1394878784 source:d:\#cpsil\current_project\sakuc\sakuc\main.c
+	<stdio.h>
+	"test/ringbuffer_test.h"
+
+1394875763 source:d:\#cpsil\current_project\sakuc\sakuc\ringbuffer.c
+	"ringbuffer.h"
+	"common_memory_management_defs.h"
+
+1394876835 d:\#cpsil\current_project\sakuc\sakuc\ringbuffer.h
+	"common_defs.h"
+
+1394874087 d:\#cpsil\current_project\sakuc\sakuc\common_defs.h
+	<stddef.h>
+
+1394872758 d:\#cpsil\current_project\sakuc\sakuc\common_memory_management_defs.h
+	<stdlib.h>
+	<string.h>
+
+1394878901 source:d:\#cpsil\current_project\sakuc\sakuc\test\ringbuffer_test.c
+	"../ringbuffer.h"
+	"common_test_defs.h"
+	"ringbuffer_test.h"
+
+1394878321 d:\#cpsil\current_project\sakuc\sakuc\test\common_test_defs.h
+
+1394878747 d:\#cpsil\current_project\sakuc\sakuc\test\ringbuffer_test.h
+

@@ -26,14 +26,14 @@ int test_ringbuffer (void)
             .id = i,
             .model = model_list[i % model_list_length],
         };
-        rbuf_push(rbuf, &veh, sizeof(struct vehicle_info));
+        rbuf_push_back(rbuf, &veh, sizeof(struct vehicle_info));
     }
     sakuc_assert (rbuf_length(rbuf) == 1000);
     
     // ## test part 2
     struct vehicle_info veh;
     int count = 0;
-    while (rbuf_popleft(rbuf, &veh, sizeof(struct vehicle_info)) != nullptr) {
+    while (rbuf_pop_front(rbuf, &veh, sizeof(struct vehicle_info)) != nullptr) {
         if (veh.id == count && veh.model == model_list[count % model_list_length])
             ++count;
         else
@@ -47,13 +47,13 @@ int test_ringbuffer (void)
             .id = i,
             .model = model_list[i % model_list_length],
         };
-        rbuf_push(rbuf, &veh, sizeof(struct vehicle_info));
+        rbuf_push_back(rbuf, &veh, sizeof(struct vehicle_info));
     }
     sakuc_assert (rbuf_length(rbuf) == 1000);
     
     // ## test part 4
     count = 2000;
-    while (rbuf_popleft(rbuf, &veh, sizeof(struct vehicle_info)) != nullptr) {
+    while (rbuf_pop_front(rbuf, &veh, sizeof(struct vehicle_info)) != nullptr) {
         if (veh.id == count && veh.model == model_list[count % model_list_length])
             ++count;
         else

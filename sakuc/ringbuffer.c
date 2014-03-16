@@ -33,7 +33,7 @@ ringbuffer_t* rbuf_new(size_t capacity, size_t elem_size)
             (index) = 0;                                    \
     } while(__LINE__ == -1)
 
-int rbuf_push(ringbuffer_t *rb, void *data, size_t len)
+int rbuf_push_back(ringbuffer_t *rb, void *data, size_t len)
 {
     if (!rb || !data
         || len != rb->block_size)
@@ -55,7 +55,7 @@ int rbuf_push(ringbuffer_t *rb, void *data, size_t len)
     return 0;
 }
 
-void *rbuf_popleft(ringbuffer_t *rb, void *pop_value, size_t len)
+void *rbuf_pop_front(ringbuffer_t *rb, void *pop_value, size_t len)
 {
     if (!rb || !pop_value
         || len != rb->block_size)

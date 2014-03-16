@@ -35,6 +35,10 @@
 		</Compiler>
 		<Unit filename="common_defs.h" />
 		<Unit filename="common_memory_management_defs.h" />
+		<Unit filename="deque.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="deque.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -43,14 +47,28 @@
 		</Unit>
 		<Unit filename="ringbuffer.h" />
 		<Unit filename="test/common_test_defs.h" />
+		<Unit filename="test/deque_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="test/deque_test.h" />
 		<Unit filename="test/ringbuffer_test.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="test/ringbuffer_test.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
 			<debugger />
 			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

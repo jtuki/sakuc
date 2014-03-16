@@ -26,3 +26,46 @@
 
 1394878747 d:\#cpsil\current_project\sakuc\sakuc\test\ringbuffer_test.h
 
+1394958260 source:e:\sakuc\sakuc\main.c
+	<stdio.h>
+	"test/ringbuffer_test.h"
+	"test/deque_test.h"
+
+1394896498 e:\sakuc\sakuc\test\ringbuffer_test.h
+
+1394942047 source:e:\sakuc\sakuc\ringbuffer.c
+	"ringbuffer.h"
+	"common_memory_management_defs.h"
+
+1394942075 e:\sakuc\sakuc\ringbuffer.h
+	"common_defs.h"
+
+1394896498 e:\sakuc\sakuc\common_defs.h
+	<stddef.h>
+
+1394937472 e:\sakuc\sakuc\common_memory_management_defs.h
+	<stdlib.h>
+	<string.h>
+
+1394942191 source:e:\sakuc\sakuc\test\ringbuffer_test.c
+	"../ringbuffer.h"
+	"common_test_defs.h"
+	"ringbuffer_test.h"
+
+1394896498 e:\sakuc\sakuc\test\common_test_defs.h
+
+1394959854 source:e:\sakuc\sakuc\deque.c
+	"deque.h"
+	"common_memory_management_defs.h"
+
+1394957394 e:\sakuc\sakuc\deque.h
+	"common_defs.h"
+
+1394953045 e:\sakuc\sakuc\test\deque_test.h
+
+1394961619 source:e:\sakuc\sakuc\test\deque_test.c
+	"../deque.h"
+	"common_test_defs.h"
+	"deque_test.h"
+	<string.h>
+

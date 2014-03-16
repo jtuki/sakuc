@@ -1,7 +1,7 @@
 // 2013-7-13, jtuki@foxmail.com
 
-#ifndef RINGBUFFER_H_
-#define RINGBUFFER_H_
+#ifndef SAKUC_RINGBUFFER_H_
+#define SAKUC_RINGBUFFER_H_
 
 #include "common_defs.h"
 
@@ -13,7 +13,7 @@ typedef struct ringbuffer {
     // length: actual length (1~capacity) of current buffer.
     size_t length;
     // @start and @end - 0~(capacity-1)
-    int start; int end;
+    size_t start; size_t end;
     void *buffer;
 } ringbuffer_t;
 
@@ -23,16 +23,16 @@ extern ringbuffer_t* rbuf_new(size_t capacity, size_t elem_size);
 
 /*  Push @data (with length @len) to @rb. -1 returned if failed.
  */
-extern int rbuf_push(ringbuffer_t *rb, void *data, size_t len);
+extern int rbuf_push_back(ringbuffer_t *rb, void *data, size_t len);
 
 /*  popleft value to @pop_value (buffer with length @len which equals to @rb->block_size).
     nullptr returned if @rb is empty.
  */
-extern void *rbuf_popleft(ringbuffer_t *rb, void *pop_value, size_t len);
+extern void *rbuf_pop_front(ringbuffer_t *rb, void *pop_value, size_t len);
 
 /* -1 returned if failed. */
 extern int rbuf_destroy(ringbuffer_t *rb);
 
 #define rbuf_length(rb) ((rb)->length)
 
-#endif
+#endif // end of SAKUC_RINGBUFFER_H_

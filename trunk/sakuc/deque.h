@@ -40,6 +40,13 @@ typedef struct sakuc_deque
     size_t num_sub_deque;
 } sakuc_deque_t;
 
+/*
+    behavior:
+        SAKUC_DEQUE_SWEEP_IMMEDIATELY
+        SAKUC_DEQUE_SWEEP_MANUALLY   
+        SAKUC_DEQUE_SWEEP_HEAD       
+        SAKUC_DEQUE_SWEEP_TAIL        
+ */
 extern struct sakuc_deque *
 sakuc_deque_new(size_t sub_deque_size, size_t elem_size, int behavior);
 

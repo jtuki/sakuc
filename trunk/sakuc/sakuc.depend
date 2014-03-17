@@ -26,44 +26,45 @@
 
 1394878747 d:\#cpsil\current_project\sakuc\sakuc\test\ringbuffer_test.h
 
-1394961717 source:e:\sakuc\sakuc\main.c
+1395048840 source:e:\sakuc\sakuc\main.c
 	<stdio.h>
 	"test/ringbuffer_test.h"
 	"test/deque_test.h"
+	"test/multi_pattern_match_test.h"
 
-1394896498 e:\sakuc\sakuc\test\ringbuffer_test.h
+1395026014 e:\sakuc\sakuc\test\ringbuffer_test.h
 
-1394942047 source:e:\sakuc\sakuc\ringbuffer.c
+1395026014 source:e:\sakuc\sakuc\ringbuffer.c
 	"ringbuffer.h"
 	"common_memory_management_defs.h"
 
-1394942075 e:\sakuc\sakuc\ringbuffer.h
+1395026014 e:\sakuc\sakuc\ringbuffer.h
 	"common_defs.h"
 
-1394896498 e:\sakuc\sakuc\common_defs.h
+1395026014 e:\sakuc\sakuc\common_defs.h
 	<stddef.h>
 
-1394937472 e:\sakuc\sakuc\common_memory_management_defs.h
+1395026014 e:\sakuc\sakuc\common_memory_management_defs.h
 	<stdlib.h>
 	<string.h>
 
-1394942191 source:e:\sakuc\sakuc\test\ringbuffer_test.c
+1395026014 source:e:\sakuc\sakuc\test\ringbuffer_test.c
 	"../ringbuffer.h"
 	"common_test_defs.h"
 	"ringbuffer_test.h"
 
-1394896498 e:\sakuc\sakuc\test\common_test_defs.h
+1395026014 e:\sakuc\sakuc\test\common_test_defs.h
 
-1394959854 source:e:\sakuc\sakuc\deque.c
+1395026014 source:e:\sakuc\sakuc\deque.c
 	"deque.h"
 	"common_memory_management_defs.h"
 
-1394975322 e:\sakuc\sakuc\deque.h
+1395026014 e:\sakuc\sakuc\deque.h
 	"common_defs.h"
 
-1394953045 e:\sakuc\sakuc\test\deque_test.h
+1395026014 e:\sakuc\sakuc\test\deque_test.h
 
-1394961619 source:e:\sakuc\sakuc\test\deque_test.c
+1395026014 source:e:\sakuc\sakuc\test\deque_test.c
 	"../deque.h"
 	"common_test_defs.h"
 	"deque_test.h"
@@ -73,4 +74,20 @@
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
+
+1395051442 source:e:\sakuc\sakuc\multi_pattern_match.c
+	"common_memory_management_defs.h"
+	"deque.h"
+	"multi_pattern_match.h"
+
+1395051457 e:\sakuc\sakuc\multi_pattern_match.h
+	"common_defs.h"
+	<stdio.h>
+
+1395034341 e:\sakuc\sakuc\test\multi_pattern_match_test.h
+
+1395051407 source:e:\sakuc\sakuc\test\multi_pattern_match_test.c
+	"../multi_pattern_match.h"
+	"common_test_defs.h"
+	"multi_pattern_match_test.h"
 

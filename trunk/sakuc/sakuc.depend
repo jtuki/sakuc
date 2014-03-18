@@ -19,8 +19,8 @@
 	<stdlib.h>
 	<string.h>
 
-1395056585 source:d:\#cpsil\current_project\sakuc\sakuc\test\ringbuffer_test.c
-	"../ringbuffer.h"
+1395140027 source:d:\#cpsil\current_project\sakuc\sakuc\test\ringbuffer_test.c
+	"../src/ringbuffer.h"
 	"common_test_defs.h"
 	"ringbuffer_test.h"
 
@@ -110,7 +110,7 @@
 	"deque_test.h"
 	<string.h>
 
-1395140012 source:d:\#cpsil\current_project\sakuc\sakuc\test\multi_pattern_match_test.c
+1395142020 source:d:\#cpsil\current_project\sakuc\sakuc\test\multi_pattern_match_test.c
 	"../src/multi_pattern_match.h"
 	"common_test_defs.h"
 	"multi_pattern_match_test.h"
@@ -138,7 +138,7 @@
 	<stdlib.h>
 	<string.h>
 
-1395135166 source:d:\#cpsil\current_project\sakuc\sakuc\src\multi_pattern_match.c
+1395141654 source:d:\#cpsil\current_project\sakuc\sakuc\src\multi_pattern_match.c
 	"common_memory_management_defs.h"
 	"deque.h"
 	"multi_pattern_match.h"

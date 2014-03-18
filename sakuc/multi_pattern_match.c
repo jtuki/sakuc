@@ -87,25 +87,22 @@ static int _print_deque_for_debug_only(struct sakuc_deque *dq)
 #define _print_deque_for_debug_only(whatever)
 #endif // SAKUC_DEBUG_ONLY
 
-#define build_assert(condition) do {                \
-    if (!(condition))                               \
-        goto sakuc_build_search_automaton_failed;   \
+#define build_assert(condition) do {         \
+    if (!(condition))                        \
+        goto sakuc_build_automaton_failed;   \
 } while (__LINE__ == -1)
 
 /*  Build the search tree, and return the root node.
     @keywords - keyword list.
     @num - num of keywords in @keywords list.
-    @deque_sub_queue_size - 
-        In order to perform breath-first-search, the reserved deque (used as fifo) sub-queue size.
+    @fifo_init_size - 
+        In order to perform breath-first-search, the reserved fifo's initial size.
  */
 int sakuc_multi_pattern_build_search_automaton
-        (struct trie_node **root, const char *keywords[], size_t num, size_t deque_sub_queue_size)
+        (struct trie_node **root, const char *keywords[], size_t num, size_t fifo_init_size)
 {
-    *root = _new_trie_node(0);
-    if (*root)
-        (*root)->failover = *root;
-    else
-        return -1;
+    build_assert(*root = _new_trie_node(0));
+    (*root)->failover = *root;
     
     const char *keyword = nullptr;
     struct trie_node *current_node = nullptr;
@@ -142,7 +139,7 @@ int sakuc_multi_pattern_build_search_automaton
     // build the failover relationship based on the tree built just now, using BFS.
     
     struct sakuc_deque *dq = nullptr;
-    build_assert(dq = sakuc_deque_new(deque_sub_queue_size, sizeof(pointer_trie_node_t), 
+    build_assert(dq = sakuc_deque_new(fifo_init_size, sizeof(pointer_trie_node_t), 
                                       SAKUC_DEQUE_SWEEP_MANUALLY));
     build_assert(sakuc_deque_push_back(dq, root, sizeof (pointer_trie_node_t)) == 0);
     _print_deque_for_debug_only(dq);
@@ -181,16 +178,21 @@ int sakuc_multi_pattern_build_search_automaton
     sakuc_deque_destroy(dq);
     
     return 0;
-sakuc_build_search_automaton_failed:
-    // #mark# if failed due to memory problem, remember to destroy root to prevent memory leak.
-    // #todo# ...
+sakuc_build_automaton_failed:
+    if (dq)
+        sakuc_deque_destroy(dq);
+    if (*root)
+        sakuc_multi_pattern_destroy_search_automaton(*root, fifo_init_size);
     *root = nullptr;
     return -1;
 }
 
+#undef build_assert
+
 /* find node corresponding to @keyword, store the found node into @matched.
  */
-int sakuc_multi_pattern_find_node(struct trie_node *root, const char *keyword, struct trie_node **matched)
+int sakuc_multi_pattern_find_node(struct trie_node *root, const char *keyword, 
+                                  struct trie_node **matched)
 {
     if (!root || !keyword || !matched)
         return -1;
@@ -335,3 +337,46 @@ int sakuc_multi_pattern_search(const struct trie_node *search_db,
 
 #undef CONTINUE_LAST_YIELD
 #undef YIELD_TO_BE_CONTINUED
+
+#define destroy_assert(condition) do {              \
+    if (!(condition))                               \
+        goto sakuc_destroy_automaton_failed; \
+} while (__LINE__ == -1)
+
+int sakuc_multi_pattern_destroy_search_automaton
+    (struct trie_node *root, size_t fifo_init_size)
+{
+    if (!root || fifo_init_size == 0)
+        return -1;
+    
+    struct sakuc_deque *dq = sakuc_deque_new(fifo_init_size, sizeof(struct trie_node *),
+                                             SAKUC_DEQUE_SWEEP_MANUALLY);
+    destroy_assert(dq);
+    destroy_assert(sakuc_deque_push_back(dq, &root, sizeof(void *)) == 0);
+    
+    struct trie_node *curr_node = nullptr;
+    struct trie_node *child = nullptr;
+    
+    while (sakuc_deque_size(dq)) {
+        destroy_assert(sakuc_deque_pop_front(dq, &curr_node, sizeof(void *)) == 0);
+        destroy_assert(curr_node);
+        
+        child = curr_node->first_child;
+        while (child) {
+            destroy_assert(sakuc_deque_push_back(dq, &child, sizeof(void *)) == 0);
+            child = child->next_sibling;
+        }
+        
+        osal_mem_free(curr_node);
+    }
+    
+    sakuc_deque_destroy(dq);
+    return 0;
+    
+sakuc_destroy_automaton_failed:
+    if (dq)
+        sakuc_deque_destroy(dq);
+    return -1;
+}
+
+#undef destroy_assert

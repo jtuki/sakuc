@@ -37,23 +37,23 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="common_defs.h" />
-		<Unit filename="common_memory_management_defs.h" />
-		<Unit filename="deque.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="deque.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="multi_pattern_match.c">
+		<Unit filename="src/common_defs.h" />
+		<Unit filename="src/common_memory_management_defs.h" />
+		<Unit filename="src/deque.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="multi_pattern_match.h" />
-		<Unit filename="ringbuffer.c">
+		<Unit filename="src/deque.h" />
+		<Unit filename="src/multi_pattern_match.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="ringbuffer.h" />
+		<Unit filename="src/multi_pattern_match.h" />
+		<Unit filename="src/ringbuffer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/ringbuffer.h" />
 		<Unit filename="test/common_test_defs.h" />
 		<Unit filename="test/deque_test.c">
 			<Option compilerVar="CC" />

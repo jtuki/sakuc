@@ -104,14 +104,14 @@
 
 1395056585 d:\#cpsil\current_project\sakuc\sakuc\test\multi_pattern_match_test.h
 
-1395056585 source:d:\#cpsil\current_project\sakuc\sakuc\test\deque_test.c
-	"../deque.h"
+1395140001 source:d:\#cpsil\current_project\sakuc\sakuc\test\deque_test.c
+	"../src/deque.h"
 	"common_test_defs.h"
 	"deque_test.h"
 	<string.h>
 
-1395136928 source:d:\#cpsil\current_project\sakuc\sakuc\test\multi_pattern_match_test.c
-	"../multi_pattern_match.h"
+1395140012 source:d:\#cpsil\current_project\sakuc\sakuc\test\multi_pattern_match_test.c
+	"../src/multi_pattern_match.h"
 	"common_test_defs.h"
 	"multi_pattern_match_test.h"
 
@@ -123,4 +123,34 @@
 	"common_memory_management_defs.h"
 	"deque.h"
 	"multi_pattern_match.h"
+
+1395056622 source:d:\#cpsil\current_project\sakuc\sakuc\src\deque.c
+	"deque.h"
+	"common_memory_management_defs.h"
+
+1395056622 d:\#cpsil\current_project\sakuc\sakuc\src\deque.h
+	"common_defs.h"
+
+1394874087 d:\#cpsil\current_project\sakuc\sakuc\src\common_defs.h
+	<stddef.h>
+
+1395056622 d:\#cpsil\current_project\sakuc\sakuc\src\common_memory_management_defs.h
+	<stdlib.h>
+	<string.h>
+
+1395135166 source:d:\#cpsil\current_project\sakuc\sakuc\src\multi_pattern_match.c
+	"common_memory_management_defs.h"
+	"deque.h"
+	"multi_pattern_match.h"
+
+1395135944 d:\#cpsil\current_project\sakuc\sakuc\src\multi_pattern_match.h
+	"common_defs.h"
+	<stdio.h>
+
+1395056622 source:d:\#cpsil\current_project\sakuc\sakuc\src\ringbuffer.c
+	"ringbuffer.h"
+	"common_memory_management_defs.h"
+
+1395056622 d:\#cpsil\current_project\sakuc\sakuc\src\ringbuffer.h
+	"common_defs.h"
 

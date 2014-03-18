@@ -1,23 +1,25 @@
 # depslib dependency file v1.0
-1394878784 source:d:\#cpsil\current_project\sakuc\sakuc\main.c
+1395056622 source:d:\#cpsil\current_project\sakuc\sakuc\main.c
 	<stdio.h>
 	"test/ringbuffer_test.h"
+	"test/deque_test.h"
+	"test/multi_pattern_match_test.h"
 
-1394875763 source:d:\#cpsil\current_project\sakuc\sakuc\ringbuffer.c
+1395056622 source:d:\#cpsil\current_project\sakuc\sakuc\ringbuffer.c
 	"ringbuffer.h"
 	"common_memory_management_defs.h"
 
-1394876835 d:\#cpsil\current_project\sakuc\sakuc\ringbuffer.h
+1395056622 d:\#cpsil\current_project\sakuc\sakuc\ringbuffer.h
 	"common_defs.h"
 
 1394874087 d:\#cpsil\current_project\sakuc\sakuc\common_defs.h
 	<stddef.h>
 
-1394872758 d:\#cpsil\current_project\sakuc\sakuc\common_memory_management_defs.h
+1395056622 d:\#cpsil\current_project\sakuc\sakuc\common_memory_management_defs.h
 	<stdlib.h>
 	<string.h>
 
-1394878901 source:d:\#cpsil\current_project\sakuc\sakuc\test\ringbuffer_test.c
+1395056585 source:d:\#cpsil\current_project\sakuc\sakuc\test\ringbuffer_test.c
 	"../ringbuffer.h"
 	"common_test_defs.h"
 	"ringbuffer_test.h"
@@ -90,4 +92,35 @@
 	"../multi_pattern_match.h"
 	"common_test_defs.h"
 	"multi_pattern_match_test.h"
+
+1395056622 source:d:\#cpsil\current_project\sakuc\sakuc\deque.c
+	"deque.h"
+	"common_memory_management_defs.h"
+
+1395056622 d:\#cpsil\current_project\sakuc\sakuc\deque.h
+	"common_defs.h"
+
+1395056585 d:\#cpsil\current_project\sakuc\sakuc\test\deque_test.h
+
+1395056585 d:\#cpsil\current_project\sakuc\sakuc\test\multi_pattern_match_test.h
+
+1395056585 source:d:\#cpsil\current_project\sakuc\sakuc\test\deque_test.c
+	"../deque.h"
+	"common_test_defs.h"
+	"deque_test.h"
+	<string.h>
+
+1395130205 source:d:\#cpsil\current_project\sakuc\sakuc\test\multi_pattern_match_test.c
+	"../multi_pattern_match.h"
+	"common_test_defs.h"
+	"multi_pattern_match_test.h"
+
+1395123822 d:\#cpsil\current_project\sakuc\sakuc\multi_pattern_match.h
+	"common_defs.h"
+	<stdio.h>
+
+1395129700 source:d:\#cpsil\current_project\sakuc\sakuc\multi_pattern_match.c
+	"common_memory_management_defs.h"
+	"deque.h"
+	"multi_pattern_match.h"
 

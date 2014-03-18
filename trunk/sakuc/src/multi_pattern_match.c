@@ -217,7 +217,7 @@ int sakuc_multi_pattern_find_node(struct trie_node *root, const char *keyword,
 }
 
 // only used in function @sakuc_multi_pattern_search
-#define BEGIN_KEYWORD_ITERATE() static int _continue = FALSE
+#define _init_keyword_iterate() static int _continue = FALSE
 
 #define _continue_last_iter() do {        \
     _continue = TRUE;                     \
@@ -285,7 +285,7 @@ int sakuc_multi_pattern_search(const struct trie_node *search_db,
         return -1;
     }
 
-    BEGIN_KEYWORD_ITERATE();
+    _init_keyword_iterate();
     struct trie_node *transition = nullptr;
     if (curr_remain_keywords > 0)
         _continue_last_iter(); // go to _return_for_continued_iter() part.

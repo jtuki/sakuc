@@ -2,17 +2,16 @@
 #include "common_test_defs.h"
 #include "multi_pattern_match_test.h"
 
+// =========================*1*================================
 const char *keywords_list[] = {
     "hello", "world", "orld", "orl", "helloworld"
 };
-const size_t num_match_keywords = sizeof (keywords_list) / sizeof (keywords_list[0]);
+const size_t num_keywords = sizeof (keywords_list) / sizeof (keywords_list[0]);
 
 struct match_idx_keyword {
     size_t keyword_idx;
     size_t idx;
 };
-
-// ============================================================
 
 // @helloworld@or#^% etc. as input stream for pattern matching.
 //  6(hello) 10(orl) 11(helloworld) 11(world) 11(orld) 15(orl)
@@ -55,6 +54,20 @@ struct match_idx_keyword expected_match[] = {
     {.keyword_idx = 2, .idx = 52*2+40-1}  ,
 };
 const size_t num_expected_match = sizeof(expected_match) / sizeof(expected_match[0]);
+// =========================*2*================================
+const char *keywords_utf8_list[] = {
+    "台湾", "中文", "汉字", "中国大陆", 
+    "经济", "宏观经济", "简体", "繁体",
+    "jianti", "tizi"
+};
+const size_t num_keywords_utf8 = sizeof (keywords_utf8_list) / sizeof (keywords_utf8_list[0]);
+const char input_stream_utf8[] =
+    "中国大陆的汉字与中华台湾的汉字是不太一样的，两者分别被称作简体和繁体字，"
+    "但是，随着两岸经济往来不断加深，两岸宏观经济也和合作趋好，两地青年基本上"
+    "都能够很好的辨识这两种稍有差异的中文文字。（jiantizi 和 fantizi。）"
+    ; // 97*3 + 17 = 308 characters.
+const size_t input_stream_utf8_len = sizeof(input_stream_utf8) - 1;
+const size_t num_expected_match_utf8 = 13;
 // ============================================================
 
 int test_multi_pattern_match(void)
@@ -62,7 +75,8 @@ int test_multi_pattern_match(void)
     // ## test part 1
     struct trie_node *search_db = nullptr;
     
-    sakuc_multi_pattern_build_search_automaton(&search_db, keywords_list, num_match_keywords, 10);
+    sakuc_multi_pattern_build_search_automaton
+        (&search_db, keywords_list, num_keywords, 10);
     sakuc_assert(search_db && search_db->first_child->ch == 'h');
     
     // ## test part 2 - the tree built process it ok?
@@ -169,6 +183,35 @@ int test_multi_pattern_match(void)
         sakuc_multi_pattern_search(search_db, SAKUC_MPM_SEARCH_MODE_CONTINUE,
             input_stream, input_stream_len, &pos, &matched_keyword) == 0
     );
+    
+    // ## test part 4 - free the resources allocated.
+    sakuc_assert(sakuc_multi_pattern_destroy_search_automaton(search_db, 50) == 0);
+    
+    // ##
+    sakuc_multi_pattern_build_search_automaton
+        (&search_db, keywords_utf8_list, num_keywords_utf8, 10);
+    sakuc_assert(search_db);
+    
+    pos = 0;
+    matched_keyword = nullptr;
+    i = 0;
+    for (; i < num_expected_match_utf8; i++) {
+        enum sakuc_mpm_search_mode mode = (i == 0) ?
+            SAKUC_MPM_SEARCH_MODE_START : SAKUC_MPM_SEARCH_MODE_CONTINUE;
+            
+        sakuc_assert(
+            sakuc_multi_pattern_search(search_db, mode,
+                input_stream_utf8, input_stream_utf8_len, &pos, &matched_keyword) == 1
+            && pos > 0 && matched_keyword != nullptr
+        );
+    }
+    sakuc_assert(i == num_expected_match_utf8);
+    sakuc_assert(
+        sakuc_multi_pattern_search(search_db, SAKUC_MPM_SEARCH_MODE_CONTINUE,
+            input_stream_utf8, input_stream_utf8_len, &pos, &matched_keyword) == 0
+    );
+    
+    sakuc_assert(sakuc_multi_pattern_destroy_search_automaton(search_db, 50) == 0);
     
     return 0;
 sakuc_assert_failed:

@@ -46,7 +46,7 @@ typedef struct trie_node *pointer_trie_node_t;
 
 int sakuc_multi_pattern_build_search_automaton
         (struct trie_node **root, const char *keywords[], size_t num, 
-         size_t deque_sub_queue_size);
+         size_t fifo_init_size);
         
 int sakuc_multi_pattern_find_node(struct trie_node *root, const char *keyword, 
                                   struct trie_node **matched);
@@ -55,5 +55,7 @@ int sakuc_multi_pattern_search(const struct trie_node *search_db,
                                enum sakuc_mpm_search_mode search_mode,
                                const char *input, size_t len, 
                                size_t *matched_pos_suffix, const char **matched_keyword);
+                               
+int sakuc_multi_pattern_destroy_search_automaton(struct trie_node *root, size_t fifo_init_size);
 
 #endif // SAKUC_MULTI_PATTERN_STRING_MATCH_H_

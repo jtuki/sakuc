@@ -1,6 +1,6 @@
 // 2014-3-16 - created by jtuki@foxmail.com
 
-#include "../deque.h"
+#include "../src/deque.h"
 #include "common_test_defs.h"
 #include "deque_test.h"
 

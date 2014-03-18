@@ -1,4 +1,4 @@
-#include "../multi_pattern_match.h"
+#include "../src/multi_pattern_match.h"
 #include "common_test_defs.h"
 #include "multi_pattern_match_test.h"
 

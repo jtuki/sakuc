@@ -1,4 +1,4 @@
-#include "../ringbuffer.h"
+#include "../src/ringbuffer.h"
 #include "common_test_defs.h"
 #include "ringbuffer_test.h"
 

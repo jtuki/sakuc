@@ -219,17 +219,17 @@ int sakuc_multi_pattern_find_node(struct trie_node *root, const char *keyword,
 // only used in function @sakuc_multi_pattern_search
 #define BEGIN_KEYWORD_ITERATE() static int _continue = FALSE
 
-#define CONTINUE_LAST_ITER() do {         \
+#define _continue_last_iter() do {        \
     _continue = TRUE;                     \
     goto sakuc_mpm_search_iter_continue;  \
 } while (__LINE__ == -1)
 
-#define NOT_CONTINUE_LAST_ITER() _continue = FALSE
+#define _get_ready_for_return() _continue = FALSE
 
-#define ITER_TO_BE_CONTINUED() do {    \
-sakuc_mpm_search_iter_continue:        \
-    if (!_continue)                    \
-        return 1;                      \
+#define _return_and_wait_for_next_iter() do {  \
+sakuc_mpm_search_iter_continue:                \
+    if (!_continue)                            \
+        return 1;                              \
 } while (__LINE__ == -1)
 
 /* iterative search:
@@ -288,7 +288,7 @@ int sakuc_multi_pattern_search(const struct trie_node *search_db,
     BEGIN_KEYWORD_ITERATE();
     struct trie_node *transition = nullptr;
     if (curr_remain_keywords > 0)
-        CONTINUE_LAST_ITER();
+        _continue_last_iter(); // go to _return_for_continued_iter() part.
         
     while (curr_search_pos < curr_len) {
         _find_child(curr_node, curr_input[curr_search_pos], &transition, nullptr);
@@ -308,12 +308,12 @@ int sakuc_multi_pattern_search(const struct trie_node *search_db,
                     
                     if (curr_keyword_node->keyword) {
                         // not continue last iter, but return 1 for next iteration.
-                        NOT_CONTINUE_LAST_ITER();
+                        _get_ready_for_return();
                         
                         *matched_keyword = curr_keyword_node->keyword;
                         *matched_pos_suffix = curr_search_pos;
                         
-                        ITER_TO_BE_CONTINUED();
+                        _return_and_wait_for_next_iter();
                         curr_keyword_node = curr_keyword_node->failover;
                     }
                     else {

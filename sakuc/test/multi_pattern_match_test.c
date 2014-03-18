@@ -56,9 +56,9 @@ struct match_idx_keyword expected_match[] = {
 const size_t num_expected_match = sizeof(expected_match) / sizeof(expected_match[0]);
 // =========================*2*================================
 const char *keywords_utf8_list[] = {
-    "台湾", "中文", "汉字", "中国大陆", 
-    "经济", "宏观经济", "简体", "繁体",
-    "jianti", "tizi"
+    "台湾", "中文", "汉字", "中国大陆", // 0~3
+    "经济", "宏观经济", "简体", "繁体", // 4~7
+    "jianti", "tizi"                    // 8~9
 };
 const size_t num_keywords_utf8 = sizeof (keywords_utf8_list) / sizeof (keywords_utf8_list[0]);
 const char input_stream_utf8[] =
@@ -68,6 +68,11 @@ const char input_stream_utf8[] =
     ; // 97*3 + 17 = 308 characters.
 const size_t input_stream_utf8_len = sizeof(input_stream_utf8) - 1;
 const size_t num_expected_match_utf8 = 13;
+const size_t expected_match_utf8_idx[] = {
+        3, 2, 0, 2, 6, 7, // line 1
+        4, 5, 4, // line 2
+        1, 8, 9, 9 // line 3
+    };
 // ============================================================
 
 int test_multi_pattern_match(void)
@@ -202,7 +207,7 @@ int test_multi_pattern_match(void)
         sakuc_assert(
             sakuc_multi_pattern_search(search_db, mode,
                 input_stream_utf8, input_stream_utf8_len, &pos, &matched_keyword) == 1
-            && pos > 0 && matched_keyword != nullptr
+            && pos > 0 && matched_keyword == keywords_utf8_list[expected_match_utf8_idx[i]]
         );
     }
     sakuc_assert(i == num_expected_match_utf8);
